@@ -15,19 +15,20 @@
             <div class="form-control">
                 <input 
                     type="text" 
-                    v-bind:placeholder="placeholderString" 
-                    v-bind:value="inputValue"
-                    v-on:input="inputCHangeHandler"
-                    v-on:keypress.enter="addNewNote"
+                    :placeholder="placeholderString" 
+                    v-model="inputValue"
+                    @keypress.enter="addNewNote"
                 />
             </div>
             <button class="btn" v-on:click="addNewNote">Add</button>
             <hr />
             <ul class="list" v-if="notes.length != 0 ">
                 <li class="list-item" v-for="(myNote, index) in notes">
-                    {{ myNote }}
+                    {{ toUpperCase(myNote) }}
                     <button class="btn danger" v-on:click="deleteNoteItem(index)">Delete</button>
                 </li>
+                <hr/>
+                <li><strong>Count of notes: {{notes.length}}</strong> | Double count: {{doubleCount}}</li>
                 
             </ul>
             <div v-else>Notes list empty</div>
