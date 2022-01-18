@@ -1,7 +1,7 @@
 const App = {
     data() {
         return {
-            title: 'Note list',
+            title: 'TODO',
             placeholderString: 'Type note text',
             inputValue: '',
             notes: ['note #1', 'note #2']
@@ -19,6 +19,14 @@ const App = {
         },
         deleteNoteItem(index) {
             this.notes.splice(index, 1)
+        },
+        markDone(event) {
+            if(event.target.checked) {
+                event.target.nextElementSibling.classList.add('marked')
+            }
+            else {
+                event.target.nextElementSibling.classList.remove('marked')
+            }
         }
         
     },
@@ -29,7 +37,7 @@ const App = {
     },
     watch: { 
         inputValue(value) {
-            if(value.length > 10) {
+            if(value.length > 70) {
                 this.inputValue = ''
             }
         }
